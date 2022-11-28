@@ -117,4 +117,34 @@ public class UserServiceImpl implements UserService{
             throw new BookException("User with id " +u.getUser_id()+" is not present");
         }
     }
+    @Override
+    public User suspendUser(User user){
+        Optional<User> userObj = this.userRepository.findById((long) user.getUser_id());
+        if(userObj.isPresent()) {
+            User userUpdate = userObj.get();
+            userUpdate.setSuspended(1);
+            return this.userRepository.save(userUpdate);
+        }else{
+            throw new UserException("User not found with ID: " + user.getUser_id());
+        }
+    }
+    @Override
+    public User addMoney(User user, int money) {
+        Optional<User> userObj=this.userRepository.findById((long) user.getUser_id());
+        if(userObj.isPresent()) {
+            User userUpdate=userObj.get();
+            if((money!=0) && money%500==0) {
+                double tempMoney=money + user.getWallet_amount();
+                userUpdate.setWallet_amount(tempMoney);
+                return this.userRepository.save(userUpdate);
+            }
+            else {
+                throw new UserException("Please money in multiples of 500");
+            }
+        }
+        else{
+            throw new UserException("User not found with ID: " + user.getUser_id());
+        }
+    }
+
 }

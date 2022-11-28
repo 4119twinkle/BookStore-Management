@@ -6,8 +6,7 @@ import javax.persistence.*;
 @Table
 public class Book {
     @Id
-    @GeneratedValue
-    private long book_id;
+    long book_id;
     @Column(name = "book_name")
     String book_name;
     @Column(name = "book_cost")
@@ -18,8 +17,10 @@ public class Book {
     String book_category;
     @Column(name = "book_review")
     String book_review;
+    @Column(name = "book_inventory")
+    int book_inventory;
     @Column(name = "book_likes")
-    private int book_likes;
+    int book_likes;
 
     public long getBook_id(){
         return book_id;
@@ -65,6 +66,14 @@ public class Book {
         this.book_likes = book_likes;
     }
 
+
+    public int getBook_inventory() {
+        return book_inventory;
+    }
+    public void setBook_inventory(int book_inventory) {
+        this.book_inventory = book_inventory;
+    }
+
     @Override
     public String toString() {
         return "Book{" +
@@ -74,7 +83,17 @@ public class Book {
                 ", book_author='" + book_author + '\'' +
                 ", book_category='" + book_category + '\'' +
                 ", book_review='" + book_review + '\'' +
+                ", book_inventory=" + book_inventory +
                 ", book_likes=" + book_likes +
                 '}';
     }
 }
+//{
+//        "book_id" : "6900",
+//        "book_name" : "Harry Potter & Philosophers stone",
+//        "book_cost" : "850",
+//        "book_author" : "JK Rowling",
+//        "book_category" : "Fantasy",
+//        "book_review" : "It was thriller book",
+//        "book_likes" : "77"
+//        }

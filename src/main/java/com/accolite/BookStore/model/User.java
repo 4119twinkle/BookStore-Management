@@ -13,8 +13,8 @@ public class User {
     long phone_no;
     @Column(name = "email")
     String email;
-    @Column(name = "suspended")
-    String suspended;
+    @Column(name = "is_suspended")
+    int is_suspended;
     @Column(name = "wallet_amount")
     double wallet_amount;
 
@@ -42,11 +42,11 @@ public class User {
     public void setEmail(String email){
         this.email = email;
     }
-    public String getSuspended(){
-        return suspended;
+    public int getSuspended(){
+        return is_suspended;
     }
-    public void setSuspended(String suspended){
-        this.suspended = suspended;
+    public void setSuspended(int is_suspended){
+        this.is_suspended = is_suspended;
     }
     public double getWallet_amount(){
         return wallet_amount;
@@ -62,8 +62,9 @@ public class User {
                 ", user_name='" + user_name + '\'' +
                 ", phone_no=" + phone_no +
                 ", email='" + email + '\'' +
-                ", suspended=" + suspended +
+                ", is_suspended=" + is_suspended +
                 ", wallet_amount=" + wallet_amount +
                 '}';
     }
+
 }

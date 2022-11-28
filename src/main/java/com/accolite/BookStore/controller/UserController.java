@@ -41,12 +41,22 @@ public class UserController {
         return  HttpStatus.OK;
     }
     //usecase2
-    @GetMapping("/Wallet/{user_id}")
-    private ResponseEntity<Double> getamount(@RequestBody User u){
+
+    @GetMapping("/user/wallet/{user_id}")
+    private ResponseEntity<Double> getWallet(@RequestBody User u){
         return ResponseEntity.ok().body(this.userService.getwallet(u));
     }
-    @PostMapping("/Wallet/{user_id}")
-    private ResponseEntity<User> addwalletamount(@RequestBody User u){
-        return ResponseEntity.ok().body(this.userService.updateWallet(u));
+
+    //Adding amount to the wallet
+    @PutMapping("/user/wallet/{userId}")
+    private ResponseEntity<User> updateWallet(@PathVariable long userId, @RequestBody User user){
+        user.setUser_id(userId);
+        return ResponseEntity.ok().body(this.userService.updateWallet(user));
     }
+    @PutMapping("/user/suspend/{userId}")
+    private ResponseEntity<User> suspendUser(@PathVariable long userId, @RequestBody User user){
+        user.setUser_id(userId);
+        return ResponseEntity.ok().body(this.userService.suspendUser(user));
+    }
+
 }

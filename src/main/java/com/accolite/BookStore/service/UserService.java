@@ -17,4 +17,7 @@ public interface UserService {
     double getwallet(User u);
 
     User updateWallet(User u);
+
+    User suspendUser(User user);
+    User addMoney( User user, int money);
 }

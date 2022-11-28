@@ -36,6 +36,8 @@ public class BookServiceImpl implements BookService{
             bookUpdate.setBook_author(b.getBook_author());
             bookUpdate.setBook_category(b.getBook_category());
             bookUpdate.setBook_review(b.getBook_review());
+            bookUpdate.setBook_inventory(b.getBook_inventory());
+            bookUpdate.setBook_likes(b.getBookLikes());
             return this.bookRepository.save(bookUpdate);
         }
         else{
